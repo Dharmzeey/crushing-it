@@ -116,10 +116,6 @@ button {
   padding: 0.75rem 1rem;
 }
 
-/* #home {
-  width: 80%;
-} */
-
 #shopify-icon-sm {
   width: 2rem;
   height: 2rem;
@@ -252,6 +248,8 @@ button {
 
 #user-name-logo{
   transition: all ease-in 120ms;
+  background-color: inherit;
+  border: none;
 }
 
 #user-name-logo:hover {
@@ -437,10 +435,6 @@ button {
   border: none;
 }
 
-/* #close:hover {
-  background-color: 2px solid var(--button-hover-color);
-
-} */
 #close:focus {
   outline: 2px solid var(--font-color-blue);
   outline-offset: 2px;
@@ -680,7 +674,6 @@ button {
     gap: 0.2rem;
     border-radius: 0.5rem;
     padding: 0.2rem 0.3rem;
-    border: none;
   }
 
   #user-name {
