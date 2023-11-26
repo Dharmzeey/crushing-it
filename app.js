@@ -1,9 +1,11 @@
 const DISPLAY_NONE = "display-none"
 
 // Bell icon
+const userInfo = document.querySelector("#userinfo-dropdown");
 const notificationBell = document.querySelector("#notification-bell");
 const notificationDropdown = document.querySelector("#notification-dropdown");
 function toggleNotification() {
+  userInfo.classList.add(DISPLAY_NONE)
   notificationDropdown.classList.toggle(DISPLAY_NONE)
 };
 notificationBell.addEventListener("click", toggleNotification);
@@ -18,12 +20,11 @@ notificationBell.addEventListener("keyup", (event) => {
 
 // User Info Toggle
 const userNameAndLogo = document.querySelector("#user-name-logo");
-const userInfo = document.querySelector("#userinfo-dropdown");
 const dropdownMenuItems = document.querySelectorAll(".menu-item");
 
-
 function toggleUserInfo() {
-  userInfo.classList.toggle(DISPLAY_NONE)
+  notificationDropdown.classList.add(DISPLAY_NONE); // removes notification first
+  userInfo.classList.toggle(DISPLAY_NONE);
   dropdownMenuItems.item(0).focus();
 }
 
