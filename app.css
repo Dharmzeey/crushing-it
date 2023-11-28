@@ -306,7 +306,8 @@ button {
 }
 
 #userinfo-dropdown li{
-  padding: 0 0 0 0.7rem;
+  padding: 0 0 0 0.5rem;
+  margin: 0 0.5rem;
   transition: all ease-in var(--transition-duration-short);
 }
 
@@ -587,10 +588,6 @@ button {
 .setup-item-heading{
   display: flex;
   align-items: center;
-}
-
-.setupitem-details.first-setup-item {
-  display: grid;
 }
 
 .setup-item-heading button {

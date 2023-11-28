@@ -170,9 +170,8 @@ function app() {
     const progressCount = document.querySelector("#progress-count")
     const progressBar = document.querySelector("#progress")
     const progressBarContainer = document.querySelector("[role=status]");
-    console.log(progressBarContainer)
     setupItemCheckmarks.forEach((item) => {
-      if (item.children[0].classList.contains(DISPLAY_NONE)) {
+      if (item.querySelector(".unloaded-circle").classList.contains(DISPLAY_NONE)) {
         clickedCount++;
         clickedPercent += 20
       }
@@ -181,6 +180,10 @@ function app() {
     progressBar.value = clickedPercent;
     progressBar.setAttribute('aria-valuenow', clickedPercent);
     progressBarContainer.setAttribute('aria-label', `${clickedPercent} percentage completed`);
+  }
+
+  function updateAria(item, search, replace) {
+    item.ariaLabel = item.ariaLabel.replace(search, replace)
   }
 
   function openNext(item) {
@@ -192,20 +195,31 @@ function app() {
   }
 
   function clickCheckmark(item) {
+    const loadingStatus = document.querySelector("#loading-status");
     item.addEventListener("click", () => {
       if (item.querySelector(".unloaded-circle").classList.contains(DISPLAY_NONE)) {
+        // This if condition is when the checkmark is already clicked and needs to be unclicked
+        const markingStatus = `Successfully marked ${item.ariaLabel}`
+        updateAria(item, 'as not done', 'as done')
+        loadingStatus.ariaLabel = 'Loading. Please wait ....'
         item.querySelector(".loaded-circle").classList.add(DISPLAY_NONE);
         item.querySelector(".loading-circle").classList.remove(DISPLAY_NONE);
         setTimeout(() => {
+          loadingStatus.ariaLabel = markingStatus;
           item.querySelector(".loading-circle").classList.add(DISPLAY_NONE);
           item.querySelector(".unloaded-circle").classList.remove(DISPLAY_NONE);
           addCount();
         }, 500)
       }
       else {
+        const markingStatus = `Successfully marked ${item.ariaLabel}`
+        // This else condition is when the checkmark is not clicked and needs to be clicked
+        updateAria(item, 'as done', 'as not done')
+        loadingStatus.ariaLabel = 'Loading. Please wait ....'
         item.querySelector(".unloaded-circle").classList.add(DISPLAY_NONE);
         item.querySelector(".loading-circle").classList.remove(DISPLAY_NONE);
         setTimeout(() => {
+          loadingStatus.ariaLabel = markingStatus;
           item.querySelector(".loading-circle").classList.add(DISPLAY_NONE);
           item.querySelector(".loaded-circle").classList.remove(DISPLAY_NONE);
           addCount();
