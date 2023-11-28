@@ -38,10 +38,10 @@
 }
 
 *:focus {
+  border: none;
   outline: 2px solid var(--focus-color);
   outline-offset: 1px;
   border-radius: 0.6rem;
-  border: none;
 }
 
 body {
@@ -152,17 +152,22 @@ button {
 }
 
 #search-column {
+  width: 100%;
+}
+
+
+#search-column input{
   display: flex;
   padding: 0 0.5rem;
   align-items: center;
   gap: 0.375rem;
-  width: 100%;
+  width: 95%;
   background-color: var(--color-grey-200);
   border: none;
   color: var(--color-grey-100);
 }
 
-#search-column:focus {
+#search-column input:focus {
   outline: none;
 }
 
