@@ -10,6 +10,7 @@
   --font-color-dark: #475467;
   --font-color-grey: #303030;
   --font-color-blue: #005BD3;
+  --focus-color: #005BD3;
   --stroke-color-50: #EBEBEB;
   --stroke-color-100: #E1E1E1;
   --stroke-color-200: #616161;
@@ -25,6 +26,8 @@
   --button-bg-color: #404040;
   --button-hover-color: #E7E7E7;
   --progressbar-bg-grey: #E3E3E3;
+  --transition-duration-short: 120ms;
+  --transition-duration-medium: 150ms;
 
 }
 
@@ -34,15 +37,17 @@
   box-sizing: content-box;
 }
 
-/* html {
-  font-size: 62.5%;
-} */
+*:focus {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 1px;
+  border-radius: 0.6rem;
+  border: none;
+}
 
 body {
   font-size: 1rem;
   font-family: 'Inter', sans-serif;
   background-color: var(--color-bg);
-  /* font-weight: 400; */
 }
 
 .flex {
@@ -67,24 +72,16 @@ button {
   font-weight: 500;
   color: var(--color-white);
   cursor: pointer;
-  transition: all ease-in 100ms;
+  transition: all ease-in var(--transition-duration-short);
 }
 
 .display-none {
   display: none;
 }
 
-@keyframes dropDown {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-.smooth-dropdown {
-  animation: dropDown 10000 linear;
+.scale-in-out {
+  transform: scaleY(0);
+  transform-origin: 0px 0px;
 }
 
 @keyframes spinner {
@@ -136,7 +133,7 @@ button {
   background-color: var(--bg-color-grey);
   border-radius: 0.5rem;
   border: 1px solid var(--color-mid);
-  transition: all ease-in 100ms; 
+  transition: all ease-in var(--transition-duration-short); 
 }
 
 .search-container:hover {
@@ -190,8 +187,8 @@ button {
 }
 
 #notification-dropdown {
-  width: 22.375rem;
-  max-height: 8.5rem;
+  width: min(80vw, 22.9375rem);
+  /* max-height: 8.5rem; */
   padding: 1rem;
   position: absolute;
   font-size: 0.82rem;
@@ -201,6 +198,8 @@ button {
   color: var(--font-color-grey);
   font-weight: 600;
   border-radius: 1rem;
+  transform-origin: 0px 0px;
+  transition: transform var(--transition-duration-medium);
 }
 
 #alert-info {
@@ -230,7 +229,7 @@ button {
   padding: 0.5rem 0.5rem;
   width: 1.25rem;
   height: 1.25rem;
-  transition: all ease-in 100ms;
+  transition: all ease-in var(--transition-duration-short);
 }
 
 #notification-bell:hover {
@@ -249,7 +248,7 @@ button {
 }
 
 #user-name-logo{
-  transition: all ease-in 120ms;
+  transition: all ease-in var(--transition-duration-short);
   background-color: inherit;
   border: none;
   padding: 0;
@@ -286,18 +285,20 @@ button {
 #userinfo-dropdown {
   position: absolute;
   background-color: var(--color-white);
-  width: 20rem;
+  width: min(80vw, 20rem);
   max-height: 52.75rem;
   right: 1rem;
   top: 4.5rem;
   border-radius: 1rem;
   line-height: 2.6rem;
   padding: 1rem 0;
+  transform-origin: 0px 0px;
+  transition: transform var(--transition-duration-medium) linear;
 }
 
 #userinfo-dropdown li{
   padding: 0 0 0 0.7rem;
-  transition: all ease-in 120ms;
+  transition: all ease-in var(--transition-duration-short);
 }
 
 #userinfo-dropdown li a:not(#userinfo-heading):not(.allstores){
@@ -445,11 +446,15 @@ button {
   outline-offset: 2px;
 }
 
-#setup-guide {
+#setup-guide-header {
   margin-top: 1rem;
-  height: 7.75rem;
+  height: 6.625rem;
+}
+
+#setup-guide { 
   background-color: var(--color-white);  
   font-size: 0.812rem;
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.05), -1px -1px 2px 0px rgba(0, 0, 0, 0.05);
 }
 
 #setup-guide > div:first-child{
@@ -521,6 +526,8 @@ button {
   padding-bottom: 0.5rem;
   background-color: var(--color-white);
   border-radius: 1.125rem;
+  transform-origin: 0px 0px;
+  transition: transform var(--transition-duration-medium);
 }
 
 #setup-items img{
@@ -534,7 +541,7 @@ button {
 #setup-items li {
   padding: 0.5rem 0.5rem;
   margin: 0 0.5rem;
-  transition: all ease-in 120ms;
+  transition: all ease-in var(--transition-duration-short);
 }
 
 #setup-items li:hover{
@@ -542,16 +549,14 @@ button {
   border-radius: 0.6rem;
 }
 
-#setup-items li:focus{
+.opened-setup-item {
   background-color: var(--color-bg);
-  border-radius: 0.6rem;
-  border: 2px solid var(--font-color-blue);
+  border-radius: 0.6rem; 
 }
 
 #setup-items li div:first-child svg{
   width: 1.5rem;
   height: 1.5rem;
-  padding-right: 0.5rem;
 }
 
 #setup-items li div:first-child svg circle{
@@ -575,13 +580,17 @@ button {
   align-items: center;
 }
 
+.setupitem-details.first-setup-item {
+  display: grid;
+}
+
 .setup-item-heading button {
   background-color: inherit;
   border: none;
 }
 
 .setup-item-heading button:focus circle{
-  outline: 2px solid var(--font-color-blue);
+  outline: none;
 }
 
 .setup-item-heading svg{
@@ -589,7 +598,7 @@ button {
 }
 
 .load-spinner {
-  transform-origin: 37%;
+  transform-origin: 50%;
   animation: spinner 700ms linear infinite;
 }
 
@@ -599,6 +608,7 @@ button {
 
 .checkmark-container {
   padding: 0;
+  margin-right: 0.5rem;
 }
 
 .checkmark-container svg:nth-child(1) {
@@ -740,12 +750,17 @@ button {
   }
 
   .setupitem-details {
+    position: relative;
     display: none;
     /* This will be none but when the parent is clicked, it changes to grid with js */
-    grid-template-columns: 5fr 4fr;
+    grid-template-columns: 4.7fr 2fr;
   }
 
   #setup-items img{
     display: inline;
+    position: absolute;
+    top: 40%;
+    left: 90%;
+    transform: translate(-50%, -50%);
   }
 }

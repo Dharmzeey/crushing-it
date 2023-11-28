@@ -70,7 +70,7 @@
             fill="#fff" />
         </svg>
         <!-- The notification dropdown -->
-        <div class="notification display-none" id="notification-dropdown">
+        <div class="notification scale-in-out" id="notification-dropdown">
           <div class="flex">
             <span id="alert-title">Alerts</span>
             <div class="flex" id="">
@@ -106,7 +106,7 @@
         </button>
         <!-- The user dropdown profile -->
         <div>
-          <ul class="display-none" id="userinfo-dropdown" aria-labelledby="user-name-logo" role="menu">
+          <ul class="scale-in-out" id="userinfo-dropdown" aria-labelledby="user-name-logo" role="menu">
             <li role="menuitem" class="">
               <a href="http://admin.shopify.com" id="userinfo-heading" role="menuitem" class="menu-item">
                 <div>
@@ -168,30 +168,32 @@
   </section>
   <section>
     <div id="setup-guide">
-      <div class="flex">
+      <div class="flex" id="setup-guide-header">
         <div>
           <h3>Setup guide</h3>
           <div>Use this personalized guide to get your store up and running.</div>
           <div id="progress-container" class="flex">
-            <div><span id="progress-count">0</span> <span>/ 5 completed</span></div>
+            <div aria-live="polite">
+              <span id="progress-count">0</span> <span>/ 5 completed</span>
+            </div>
             <progress id="progress" max="100" value="0"></progress>
           </div>
         </div>
         <button aria-label="expand setup menu" id="expand-collapse-items" class="closed">
-          <svg viewBox="0 0 21 20" xmlns="http://www.w3.org/2000/svg" id="expand">
+          <svg viewBox="0 0 21 20" xmlns="http://www.w3.org/2000/svg" id="collapse">
             <path fill-rule="evenodd" clip-rule="evenodd"
               d="M6.21967 8.46967C6.51256 8.17678 6.98744 8.17678 7.28033 8.46967L10.75 11.9393L14.2197 8.46967C14.5126 8.17678 14.9874 8.17678 15.2803 8.46967C15.5732 8.76256 15.5732 9.23744 15.2803 9.53033L11.2803 13.5303C10.9874 13.8232 10.5126 13.8232 10.2197 13.5303L6.21967 9.53033C5.92678 9.23744 5.92678 8.76256 6.21967 8.46967Z"
               fill="#fff" />
           </svg>
-          <svg viewBox="0 0 21 20" fill="red" xmlns="http://www.w3.org/2000/svg" id="collapse">
+          <svg viewBox="0 0 21 20" fill="red" xmlns="http://www.w3.org/2000/svg" id="expand">
             <path fill-rule="evenodd" clip-rule="evenodd"
               d="M15.0303 12.2803C14.7374 12.5732 14.2626 12.5732 13.9697 12.2803L10.5 8.81066L7.03033 12.2803C6.73744 12.5732 6.26256 12.5732 5.96967 12.2803C5.67678 11.9874 5.67678 11.5126 5.96967 11.2197L9.96967 7.21967C10.2626 6.92678 10.7374 6.92678 11.0303 7.21967L15.0303 11.2197C15.3232 11.5126 15.3232 11.9874 15.0303 12.2803Z"
               fill="#fff" />
           </svg>
         </button>
       </div>
-      <ul id="setup-items" class="display-none">
-        <li>
+      <ul id="setup-items">
+        <li class="opened-setup-item">
           <div class="setup-item-heading">
             <button aria-label="Mark customize your online Store as done" class="checkmark-container">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none"
@@ -215,9 +217,9 @@
             </button>
             <div>Customize your online store</div>
           </div>
-          <div class="setupitem-details">
+          <div class="setupitem-details first-setup-item">
             <div>
-              <span>Choose a theme and add your logo, colors, and images to reflect your brand. <span class="learn-more">Learn more</span></span>
+              <span>Choose a theme and add your logo, colors, and images to reflect your brand. <a href="#" class="learn-more">Learn more</a></span>
               <div class="btn-container">
                 <button>Customize theme</button>
               </div>
@@ -227,7 +229,7 @@
             </div>
           </div>
         </li>
-        <li>
+        <li tabindex="0">
           <div class="setup-item-heading">
             <button aria-label="Mark add first product as done" class="checkmark-container">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none"
@@ -253,8 +255,8 @@
           </div>
           <div class="setupitem-details">
             <div>
-              <span>Write a description, add photos, and set pricing for the products you plan to sell. <span class="learn-more">Learn
-                  more</span></span>
+              <span>Write a description, add photos, and set pricing for the products you plan to sell. <a href="#" class="learn-more">Learn
+                  more</a></span>
               <div class="btn-container">
                 <button>Add product</button> <button id="import-product">Import product</button>
               </div>
@@ -264,7 +266,7 @@
             </div>
           </div>
         </li>
-        <li>
+        <li tabindex="0">
           <div class="setup-item-heading">
             <button aria-label="Mark add custom domain as done" class="checkmark-container">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none"
@@ -290,8 +292,8 @@
           </div>
           <div class="setupitem-details">
             <div>
-              <span>Your current domain is 222219.myshopify.com but you can add a custom domain to help customers find your online store <span
-                  class="learn-more">Learn more</span></span>
+              <span>Your current domain is 222219.myshopify.com but you can add a custom domain to help customers find your online store <a href="#" class="learn-more">Learn
+                more</a></span>
               <div class="btn-container">
                 <button>Add domain</button>
               </div>
@@ -301,7 +303,7 @@
             </div>
           </div>
         </li>
-        <li>
+        <li tabindex="0">
           <div class="setup-item-heading">
             <button aria-label="Mark Name your Store as done" class="checkmark-container">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none"
@@ -327,8 +329,8 @@
           </div>
           <div class="setupitem-details">
             <div>
-              <span>Your temporary store name is currently Davi collections. The store name appears in your admin and your online store <span
-                  class="learn-more">Learn more</span></span>
+              <span>Your temporary store name is currently Davi collections. The store name appears in your admin and your online store <a href="#" class="learn-more">Learn
+                more</a></span>
               <div class="btn-container">
                 <button>Name store</button>
               </div>
@@ -338,7 +340,7 @@
             </div>
           </div>
         </li>
-        <li>
+        <li tabindex="0">
           <div class="setup-item-heading">
             <button aria-label="Mark setup payment as done" class="checkmark-container">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none"
@@ -364,9 +366,9 @@
           </div>
           <div class="setupitem-details">
             <div>
-              <span>Choose a payment provider to start accepting payments. You'll need to create a account with the payment provider and set it up
+              <span>Choose a payment provider to start accepting payments. You'll need to create an account with the payment provider and set it up
                 with
-                your shopify store. <span class="learn-more">Learn more</span></span>
+                your shopify store. <a href="#" class="learn-more">Learn more</a></span>
               <div class="btn-container">
                 <button>Set up payment</button>
               </div>
