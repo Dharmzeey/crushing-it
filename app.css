@@ -205,6 +205,7 @@ button {
   border-radius: 1rem;
   transform-origin: 0px 0px;
   transition: transform var(--transition-duration-medium);
+  z-index: 1;
 }
 
 #alert-info {
@@ -298,7 +299,8 @@ button {
   line-height: 2.6rem;
   padding: 1rem 0;
   transform-origin: 0px 0px;
-  transition: transform var(--transition-duration-medium) linear;
+  transition: transform var(--transition-duration-medium);
+  z-index: 1;
 }
 
 #userinfo-dropdown li{
@@ -653,6 +655,10 @@ button {
 .learn-more {
   color: var(--font-color-blue);
   font-weight: 500;
+}
+
+.setupitem-details .learn-more:focus{
+  border-radius: 0px;
 }
 
 .btn-container {

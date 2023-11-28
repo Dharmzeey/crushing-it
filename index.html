@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Bungee+Spice&family=Inter&family=Nunito+Sans&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="./app.css">
-  <title>Shopify </title>
+  <title>Shopify Admin</title>
 </head>
 
 <body>
@@ -72,7 +72,7 @@
             fill="#fff" />
         </svg>
         <!-- The notification dropdown -->
-        <div class="notification scale-in-out" id="notification-dropdown">
+        <div class="notification scale-in-out display-none" id="notification-dropdown">
           <div class="flex">
             <span id="alert-title">Alerts</span>
             <div class="flex" id="">
@@ -108,7 +108,7 @@
         </button>
         <!-- The user dropdown profile -->
         <div>
-          <ul class="scale-in-out" id="userinfo-dropdown" aria-labelledby="user-name-logo" role="menu">
+          <ul class="scale-in-out display-none" id="userinfo-dropdown" aria-labelledby="user-name-logo" role="menu">
             <li role="menuitem" class="">
               <a href="http://admin.shopify.com" id="userinfo-heading" role="menuitem" class="menu-item">
                 <div>
@@ -195,7 +195,7 @@
         </button>
       </div>
       <ul id="setup-items">
-        <li class="opened-setup-item">
+        <li class="opened-setup-item" tabindex="0">
           <div class="setup-item-heading">
             <button aria-label="Mark customize your online Store as done" class="checkmark-container">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32" fill="none"

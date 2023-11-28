@@ -1,32 +1,34 @@
 function app() {
   const DISPLAY_NONE = "display-none";
   const SCALE_IN_OUT = "scale-in-out";
-  const TRANSITION_DELAY = 50;
+  const TRANSITION_DELAY = 50; // unit is ms (milliseconds)
 
   // Bell icon
   const userInfo = document.querySelector("#userinfo-dropdown");
   const notificationBell = document.querySelector("#notification-bell");
   const notificationDropdown = document.querySelector("#notification-dropdown");
 
+  // this function will open dropdown (notification, user profile, setup items)
   function openDropDown(element) {
     element.classList.remove(DISPLAY_NONE);
-    setTimeout(()=>{
+    setTimeout(() => {
       element.classList.remove(SCALE_IN_OUT);
     }, TRANSITION_DELAY)
   }
 
+  // this function will close dropdown (notification, user profile, setup items)
   function closeDropDown(element) {
     element.classList.add(SCALE_IN_OUT)
-    setTimeout(()=>{
+    setTimeout(() => {
       element.classList.add(DISPLAY_NONE);
     }, TRANSITION_DELAY)
   }
 
   function toggleNotification() {
     closeDropDown(userInfo); // removes userdropdown first
-    if (notificationDropdown.classList.contains(SCALE_IN_OUT)){
+    if (notificationDropdown.classList.contains(SCALE_IN_OUT)) {
       openDropDown(notificationDropdown)
-    }else {
+    } else {
       closeDropDown(notificationDropdown)
     }
   };
@@ -46,14 +48,15 @@ function app() {
 
   function toggleUserInfo() {
     closeDropDown(notificationDropdown); // removes notification first
-    if (userInfo.classList.contains(SCALE_IN_OUT)){
+    if (userInfo.classList.contains(SCALE_IN_OUT)) {
       openDropDown(userInfo)
-    }else{
+    } else {
       closeDropDown(userInfo)
     }
     dropdownMenuItems.item(0).focus();
   }
 
+  // this function is used by user profile when escape is pressed and returns focus
   function escapeKeypress(event) {
     if (event.key === "Escape") {
       toggleUserInfo();
@@ -61,14 +64,15 @@ function app() {
     }
   }
 
-  function navigateListItems(event, itemIndex) {
-    const isLastItem = itemIndex === dropdownMenuItems.length - 1;
+  // This function is used by setup item and menu item for navigation
+  function navigateListItems(event, itemIndex, navigationElementType) {
+    const isLastItem = itemIndex === navigationElementType.length - 1;
     const isFirstItem = itemIndex === 0;
-    const nextItem = dropdownMenuItems.item(itemIndex + 1);
-    const previousItem = dropdownMenuItems.item(itemIndex - 1);
+    const nextItem = navigationElementType.item(itemIndex + 1);
+    const previousItem = navigationElementType.item(itemIndex - 1);
     if (event.key === "ArrowRight" || event.key === "ArrowDown") {
       if (isLastItem) {
-        dropdownMenuItems.item(0).focus();
+        navigationElementType.item(0).focus();
         return;
       }
       nextItem.focus();
@@ -76,19 +80,20 @@ function app() {
 
     if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
       if (isFirstItem) {
-        dropdownMenuItems.item(dropdownMenuItems.length - 1).focus();
+        navigationElementType.item(navigationElementType.length - 1).focus();
         return;
       }
       previousItem.focus();
     }
   }
+
+  // Navigate profile items
   dropdownMenuItems.forEach((item, itemIndex) => {
     item.addEventListener('keyup',
       (event) => {
-        navigateListItems(event, itemIndex)
+        navigateListItems(event, itemIndex, dropdownMenuItems)
       });
   })
-
   userNameAndLogo.addEventListener("click", toggleUserInfo);
   userInfo.addEventListener('keyup', escapeKeypress)
 
@@ -108,9 +113,9 @@ function app() {
   function expandAndCollapse() {
     expandCollapse.classList.toggle("closed")
 
-    if (toggleSetupItems.classList.contains(SCALE_IN_OUT)){
+    if (toggleSetupItems.classList.contains(SCALE_IN_OUT)) {
       openDropDown(toggleSetupItems)
-    }else{
+    } else {
       closeDropDown(toggleSetupItems)
     }
     if (expandCollapse.classList.contains("closed")) {
@@ -147,6 +152,14 @@ function app() {
     )
   }
   setupItemHeadingList.forEach(expandItem)
+
+  // Navigate setup item
+  setupItemHeadingList.forEach((item, itemIndex) => {
+    item.addEventListener('keyup',
+      (event) => {
+        navigateListItems(event, itemIndex, setupItemHeadingList)
+      });
+  })
 
 
   // Check and uncheck setup 
