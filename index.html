@@ -175,10 +175,10 @@
           <h3>Setup guide</h3>
           <div>Use this personalized guide to get your store up and running.</div>
           <div id="progress-container" class="flex">
-            <div aria-live="polite">
+            <div role="status" aria-live="assertive" aria-label="percentage completed">
               <span id="progress-count">0</span> <span>/ 5 completed</span>
             </div>
-            <progress id="progress" max="100" value="0"></progress>
+            <progress id="progress" max="100" value="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></progress>
           </div>
         </div>
         <button aria-label="expand setup menu" id="expand-collapse-items" class="closed">
@@ -385,5 +385,4 @@
   </section>
 </body>
 <script src="./app.js"></script>
-
 </html>

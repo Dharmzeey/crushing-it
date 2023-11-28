@@ -169,6 +169,8 @@ function app() {
     let clickedPercent = 0;
     const progressCount = document.querySelector("#progress-count")
     const progressBar = document.querySelector("#progress")
+    const progressBarContainer = document.querySelector("[role=status]");
+    console.log(progressBarContainer)
     setupItemCheckmarks.forEach((item) => {
       if (item.children[0].classList.contains(DISPLAY_NONE)) {
         clickedCount++;
@@ -177,6 +179,8 @@ function app() {
     })
     progressCount.textContent = clickedCount;
     progressBar.value = clickedPercent;
+    progressBar.setAttribute('aria-valuenow', clickedPercent);
+    progressBarContainer.setAttribute('aria-label', `${clickedPercent} percentage completed`);
   }
 
   function openNext(item) {
